@@ -72,8 +72,15 @@ export default function App() {
 
   return (
     <>
-      {/* the fixed sky layer is in index.html so it paints before the
-          bundle has even been fetched */}
+      <div className="site-bg" aria-hidden="true">
+        <img
+          src="https://framerusercontent.com/images/zdyVgV3mHbefUxxXrdbjdNBKg1I.jpeg?width=1200&height=603"
+          srcSet="https://framerusercontent.com/images/zdyVgV3mHbefUxxXrdbjdNBKg1I.jpeg?width=768&height=386 768w, https://framerusercontent.com/images/zdyVgV3mHbefUxxXrdbjdNBKg1I.jpeg?width=1200&height=603 1200w, https://framerusercontent.com/images/zdyVgV3mHbefUxxXrdbjdNBKg1I.jpeg?width=1864&height=937 1864w, https://framerusercontent.com/images/zdyVgV3mHbefUxxXrdbjdNBKg1I.jpeg?width=2752&height=1383 2752w"
+          sizes="100vw"
+          alt=""
+          decoding="async"
+        />
+      </div>
       <Nav />
       {/* Wrapping Hero + AboutOverlap bounds the sticky hero's containing
           block to just this pair — without it, the containing block is
@@ -95,5 +102,6 @@ export default function App() {
     </>
   )
 }
+
 
 
