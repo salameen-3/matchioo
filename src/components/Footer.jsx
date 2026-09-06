@@ -13,7 +13,7 @@ const SOCIAL = [
   },
   {
     name: 'LinkedIn',
-    href:'https://www.linkedin.com/in/sumoud-salamin-20aaa82b2',
+    href: 'https://www.linkedin.com/in/sumoud-salamin-20aaa82b2',
 ',
     svg: (
       <svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true">
