@@ -78,7 +78,7 @@ export default function Footer() {
 
       <div className="ft-links">
         <div className="ft-info">
-          <h4>Matcha &nbsp;Matcha Cafe</h4>
+          <h4>Matcha Cafe</h4>
           <a href="https://share.google/3pqChHP5fBm2tGRvy" target="_blank" rel="noopener noreferrer">
             Delivery across the West Bank, Jerusalem and inside
           </a>
