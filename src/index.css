@@ -74,6 +74,8 @@ h4 {
      already reaches down there before the bar moves. */
   height: 100vh;
   height: 100lvh;
+  /* the sky photo's own colour, showing for the moment before it decodes */
+  background: #8fc2e6;
 }
 
 .site-bg img {
@@ -1637,6 +1639,7 @@ footer{background:none;color:var(--ink);padding:0 60px 40px}
   .spin-badge,
   .sig-item-blue .sig-item-cup { transition-duration: .01ms; }
 }
+
 
 
 
