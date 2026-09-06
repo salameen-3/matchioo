@@ -146,13 +146,14 @@ function MenuCard({ item }) {
     const el = ref.current
     if (!el) return
 
+    // toggle, not add-once: on a phone there is no pointer to move away, so
+    // a card that only ever gained the class stayed blue forever. The real
+    // site flips it back the moment the card leaves the middle band, which
+    // is what a hover-out does on a laptop.
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('opened')
-            observer.unobserve(entry.target)
-          }
+          entry.target.classList.toggle('opened', entry.isIntersecting)
         })
       },
       { threshold: 0.5, rootMargin: '-30% 0px -30% 0px' }
@@ -225,3 +226,4 @@ export default function Menu() {
     </section>
   )
 }
+
