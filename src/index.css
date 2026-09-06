@@ -298,10 +298,6 @@ ul {
   pointer-events: none;
 }
 
-.hero-sky {
-  display: none;
-}
-
 /* On the real site this whole block (photo + both cursive lines + the two
    little bursts) is ONE Framer component that swaps from "desktop variant 1"
    (bottom:-127px) to "desktop Variant 2" (bottom:-694px) as soon as the About
@@ -502,6 +498,10 @@ ul {
   width: 100%;
   height: 100%;
   animation: spin-rotate 13s linear infinite reverse;
+  /* text on a curved path is expensive to rasterise; its own compositor
+     layer means it is drawn once and only the layer is rotated after that */
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 .spin-badge .spin-center {
@@ -1566,8 +1566,10 @@ footer{background:none;color:var(--ink);padding:0 60px 40px}
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .chip-ticker-track { animation: none; }
+  .chip-ticker-track,
+  .spin-badge svg { animation: none; }
   .hero-hands,
   .spin-badge,
   .sig-item-blue .sig-item-cup { transition-duration: .01ms; }
 }
+
