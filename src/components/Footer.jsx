@@ -72,19 +72,19 @@ export default function Footer() {
     <footer>
       {/* logo + headline, both right-aligned like the real block */}
       <div className="ft-top">
-        <a className="ft-logo" href="#hero">Matchioo</a>
+        <a className="ft-logo" href="#hero">Matchia</a>
         <h4 className="ft-tagline">Make every matcha moment feel special</h4>
       </div>
 
       <div className="ft-links">
         <div className="ft-info">
-          <h4>Matchioo &nbsp;Matcha Cafe</h4>
+          <h4>Matcha &nbsp;Matcha Cafe</h4>
           <a href="https://share.google/3pqChHP5fBm2tGRvy" target="_blank" rel="noopener noreferrer">
             Delivery across the West Bank, Jerusalem and inside
           </a>
           <div className="ft-contact">
             <h4>Contact</h4>
-            <a href="mailto:hello@matchioo.com">hello@matchioo.com</a>
+            <a href="mailto:hello@matcha.com">hello@matcha.com</a>
             <a href="tel:+972 593 604 96">+972 593 604 96</a>
           </div>
         </div>
@@ -110,13 +110,13 @@ export default function Footer() {
       <div className="ft-rule"></div>
 
       <div className="ft-credit">
-        <p>© 2026 Matchioo Matcha Cafe. All rights reserved.</p>
+        <p>© 2026 Matcha Cafe. All rights reserved.</p>
         <a href="#hero">Privacy Policy</a>
         <a href="#hero" onClick={backToTop}>Back to top</a>
       </div>
 
       <div ref={wordmarkRef} className="ft-wordmark">
-        <span className="ft-word">Matchioo</span>
+        <span className="ft-word">Matcha</span>
         <p className="ft-built">
           Built by <span className="ft-built-name">Sumoud Salamin</span>
         </p>
