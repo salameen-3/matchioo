@@ -29,7 +29,7 @@ export default function Nav() {
   return (
     <div className="nav-outer">
       <div className="nav-pill">
-        <a className="brand" href="#hero" onClick={go('#hero')}>Matchioo</a>
+        <a className="brand" href="#hero" onClick={go('#hero')}>Matcha</a>
         <nav
           className={`nav-links${open ? ' open' : ''}`}
           style={
