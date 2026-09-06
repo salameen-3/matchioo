@@ -269,10 +269,18 @@ ul {
    Sticky hero
 ========================================================= */
 
+/* svh, not vh: on a phone `100vh` means the viewport with the browser's
+   address bar HIDDEN, so on first paint — bar still showing — the bottom of
+   the hero (and the spinning circle that peeks over its edge) sits below the
+   fold, and the circle only turned up once scrolling collapsed the bar. That
+   collapse also resizes the viewport, which relays out the whole pinned hero
+   mid-scroll: the hitch. `svh` is the viewport WITH the bar, so the layout is
+   right from the first frame and never changes. */
 .hero {
   position: sticky;
   top: 0;
   min-height: 100vh;
+  min-height: 100svh;
   overflow: hidden;
   z-index: 0;
 }
@@ -534,10 +542,12 @@ ul {
     bottom: -69px;
     width: 100%;
     height: 75vh;
+    height: 75svh;
     aspect-ratio: auto;
     transform: none;
   }
   .hero-hands.dragged { transform: translateY(max(631px, calc(75vh - 69px))); }
+  @supports (height: 100svh) { .hero-hands.dragged { transform: translateY(max(631px, calc(75svh - 69px))); } }
   .hero-hands h1 { font-size: 45px; }
   .spin-badge { width: 125px; bottom: -81px; }
 }
@@ -548,10 +558,12 @@ ul {
     bottom: -6px;
     width: 100%;
     height: 80vh;
+    height: 80svh;
     aspect-ratio: auto;
     transform: none;
   }
   .hero-hands.dragged { transform: translateY(max(694px, calc(80vh - 6px))); }
+  @supports (height: 100svh) { .hero-hands.dragged { transform: translateY(max(694px, calc(80svh - 6px))); } }
   .hero-hands h1 { font-size: 36px; }
   .spin-badge {
     width: 125px;
