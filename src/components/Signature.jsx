@@ -58,7 +58,10 @@ export default function Signature() {
       section.style.setProperty('--sig-dy', ((s.top + s.height / 2) - (c.top + c.height / 2)).toFixed(1) + 'px')
       // the real phone variant keeps this cup at scale 1 — there it only
       // travels down into the column, it doesn't shrink
-      section.style.setProperty('--sig-scale', window.innerWidth < 810 ? '1' : '1.667')
+      // 1.45 x the row cup's 32vw puts the floating cup at ~46vw — the size
+      // it reads at on the real phone layout. It used to sit at 1, i.e. no
+      // bigger than the two cups it is meant to tower over.
+      section.style.setProperty('--sig-scale', window.innerWidth < 810 ? '1.45' : '1.667')
     }
     measure()
     window.addEventListener('load', measure)
@@ -73,12 +76,20 @@ export default function Signature() {
     }, { threshold: 0.25 })
     wake.observe(section)
 
-    // the landing trigger — the real site watches a band starting 41% down
-    // the panel and running for 60% of its height, and fires at 50% of it
+    // The landing trigger. On desktop the real site watches a band starting
+    // 41% down the panel and fires at 50% of it. On a phone that band is a
+    // slice of a section three screens tall, so half of it only comes into
+    // view long after the cup should already have settled — which is the lag.
+    // There the row itself is the trigger instead: the moment its top passes
+    // two thirds of the way up the screen, the cup drops. Same beat as the
+    // pointer version, no waiting.
+    const phone = window.innerWidth < 810
+    const row = section.querySelector('.sig-row')
+    const landTarget = phone && row ? row : band
     const land = new IntersectionObserver((entries) => {
       entries.forEach((e) => section.classList.toggle('landed', e.isIntersecting))
-    }, { threshold: 0.5 })
-    land.observe(band)
+    }, phone ? { threshold: 0, rootMargin: '0px 0px -35% 0px' } : { threshold: 0.5 })
+    land.observe(landTarget)
 
     return () => {
       clearTimeout(rt)
@@ -138,3 +149,5 @@ export default function Signature() {
     </section>
   )
 }
+
+
