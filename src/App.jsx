@@ -52,29 +52,18 @@ export default function App() {
       endObs.observe(endMark)
     }
 
+    // The circle goes the moment the big paragraph starts climbing over the
+    // cups — a quarter of it on screen. Waiting for the whole section (what
+    // this used to do) left it hanging around for most of a phone screen.
     let fade = null
-    let rt
-    // "fully visible" as a threshold: if the paragraph is taller than the
-    // window (phones), 1.0 could never fire, so cap it at whatever fraction
-    // of it can physically be on screen at once.
-    const arm = () => {
-      if (!badge) return
-      if (fade) fade.disconnect()
-      const h = about.offsetHeight || 1
-      const t = Math.max(0.35, Math.min(0.999, (window.innerHeight - 8) / h))
+    if (badge) {
       fade = new IntersectionObserver((entries) => {
         entries.forEach((e) => badge.classList.toggle('gone', e.isIntersecting))
-      }, { threshold: t })
+      }, { threshold: 0.25 })
       fade.observe(about)
     }
-    arm()
-
-    const onResize = () => { clearTimeout(rt); rt = setTimeout(arm, 200) }
-    window.addEventListener('resize', onResize, { passive: true })
 
     return () => {
-      clearTimeout(rt)
-      window.removeEventListener('resize', onResize)
       drag.disconnect()
       endObs?.disconnect()
       fade?.disconnect()
@@ -84,7 +73,13 @@ export default function App() {
   return (
     <>
       <div className="site-bg" aria-hidden="true">
-        <img src="https://framerusercontent.com/images/zdyVgV3mHbefUxxXrdbjdNBKg1I.jpeg?width=2752&height=1383" alt="" />
+        <img
+          src="https://framerusercontent.com/images/zdyVgV3mHbefUxxXrdbjdNBKg1I.jpeg?width=1200&height=603"
+          srcSet="https://framerusercontent.com/images/zdyVgV3mHbefUxxXrdbjdNBKg1I.jpeg?width=768&height=386 768w, https://framerusercontent.com/images/zdyVgV3mHbefUxxXrdbjdNBKg1I.jpeg?width=1200&height=603 1200w, https://framerusercontent.com/images/zdyVgV3mHbefUxxXrdbjdNBKg1I.jpeg?width=1864&height=937 1864w, https://framerusercontent.com/images/zdyVgV3mHbefUxxXrdbjdNBKg1I.jpeg?width=2752&height=1383 2752w"
+          sizes="100vw"
+          alt=""
+          decoding="async"
+        />
       </div>
       <Nav />
       {/* Wrapping Hero + AboutOverlap bounds the sticky hero's containing
@@ -107,3 +102,4 @@ export default function App() {
     </>
   )
 }
+
