@@ -11,16 +11,13 @@ export default function Hero() {
 
   return (
     <section className="hero" id="hero">
-      <div className="hero-sky">
-        <img
-          src="https://framerusercontent.com/images/zdyVgV3mHbefUxxXrdbjdNBKg1I.jpeg?width=2752&height=1383"
-          alt="Blue sky"
-        />
-      </div>
       <div className="hero-hands">
         <img
-          src="https://framerusercontent.com/images/VYGHpzvIVaSnIHqbKXm84bHfg.png?width=2752&height=1307"
+          src="https://framerusercontent.com/images/VYGHpzvIVaSnIHqbKXm84bHfg.png?width=1200&height=570"
+          srcSet="https://framerusercontent.com/images/VYGHpzvIVaSnIHqbKXm84bHfg.png?width=768&height=365 768w, https://framerusercontent.com/images/VYGHpzvIVaSnIHqbKXm84bHfg.png?width=1200&height=570 1200w, https://framerusercontent.com/images/VYGHpzvIVaSnIHqbKXm84bHfg.png?width=1864&height=885 1864w, https://framerusercontent.com/images/VYGHpzvIVaSnIHqbKXm84bHfg.png?width=2752&height=1307 2752w"
+          sizes="100vw"
           alt="Hands holding iced matcha drinks"
+          decoding="async"
         />
 
         <div ref={burst1Ref} className="hero-doodle doodle-burst1 reveal" style={{ transitionDelay: '.4s' }}>
