@@ -1333,8 +1333,30 @@ ul {
   .rv-text{font-size:14px;margin-top:4px}
   .rv-rating{font-size:14px}
   .rv-avatar{width:42px;height:42px}
-  .rv-l{font-size:clamp(70px,20vw,120px)}
+  /* The scattered "review" letters have their OWN phone layout on the real
+     site — measured off it at 375px wide: the letters stay 120px (they never
+     shrink), the pair of quote marks are 31px and 48px, and the whole set
+     spreads from 22% to 84% across instead of huddling between 37% and 65%,
+     which is why they were piling on top of each other here. The 52deg
+     #review / -62deg #testimonial tags keep the rotations they already have —
+     only their anchor points move. */
+  .reviews{min-height:931px;overflow-x:clip}
+  .rv-l{font-size:120px}
   .rv-tag{font-size:12px}
+  .rv-q1{font-size:31px}
+  .rv-q2{font-size:48px}
+
+  .rv-l-v        {left:22.85%;top:14.77%}
+  .rv-tag-review {left:21.66%;top:17.42%}
+  .rv-l-e1       {left:50.27%;top:14.77%}
+  .rv-l-r        {left:77.42%;top:14.77%}
+  .rv-q1         {left:81.35%;top:19.88%}
+
+  .rv-q2         {left:21.52%;top:82.90%}
+  .rv-l-w        {left:23.38%;top:83.67%}
+  .rv-l-e2       {left:57.20%;top:83.67%}
+  .rv-tag-testi  {left:82.64%;top:84.55%}
+  .rv-l-i        {left:83.81%;top:83.67%}
 }
 
 /* ===== TEAM =====
@@ -1615,6 +1637,7 @@ footer{background:none;color:var(--ink);padding:0 60px 40px}
   .spin-badge,
   .sig-item-blue .sig-item-cup { transition-duration: .01ms; }
 }
+
 
 
 
