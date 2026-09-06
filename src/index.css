@@ -67,6 +67,13 @@ h4 {
   inset: 0;
   z-index: -1;
   overflow: hidden;
+  /* a phone's address bar retracts as you scroll, growing the viewport. A
+     plain inset:0 layer is sized to the SMALL viewport, so for a frame or
+     two the newly uncovered strip at the bottom paints as bare page
+     background — the white band. lvh is the tall viewport, so the sky
+     already reaches down there before the bar moves. */
+  height: 100vh;
+  height: 100lvh;
 }
 
 .site-bg img {
@@ -465,10 +472,9 @@ ul {
     height: 29px;
   }
 
-  .doodle-burst2 {
-    width: 18px;
-    height: 34px;
-  }
+  /* on the phone the real hero shows one burst only, the one over
+     "for the move" — the second sat out on its own over the cups */
+  .doodle-burst2 { display: none; }
 }
 
 
@@ -507,9 +513,10 @@ ul {
   height: 100%;
   animation: spin-rotate 13s linear infinite reverse;
   /* text on a curved path is expensive to rasterise; its own compositor
-     layer means it is drawn once and only the layer is rotated after that */
+     layer means it is drawn once and only the layer is rotated after that.
+     will-change ALONE — setting a transform here as well would override the
+     keyframes' own transform and the ring would sit still. */
   will-change: transform;
-  transform: translateZ(0);
 }
 
 .spin-badge .spin-center {
@@ -808,6 +815,12 @@ ul {
   margin-top: 90px;
 }
 
+/* the real phone variant sets this to 19px, which keeps it on one line —
+   at 26px it wrapped and the two lines collided */
+@media (max-width: 809px) {
+  .sig-title { font-size: 19px; line-height: 1.5; margin-top: 56px; }
+}
+
 .sig-row {
   display: flex;
   justify-content: center;
@@ -937,18 +950,33 @@ ul {
   .sig-item-blue { width: 456px; margin: 0 -120px; }
 }
 
+/* the phone clouds are deliberately wider than the screen, so this panel
+   clips its own horizontal spill. `clip` rather than `hidden`: hidden on one
+   axis forces the other to scroll, which would cut the big cup's lift. */
+@media (max-width: 809px) {
+  .signature { overflow-x: clip; }
+}
+
 /* phone: the real site turns the row into a single column and the order
    becomes Blueberry -> Chocolate -> Strawberry */
 @media (max-width: 809px) {
-  .sig-row { flex-direction: column; align-items: center; row-gap: 40px; margin-top: 20px; }
-  .sig-item { width: 100%; max-width: 420px; margin: 0; }
-  .sig-item .sig-item-cup { width: 36%; }
-  .sig-item-cloud { width: 64%; bottom: -46px; }
-  .sig-item-cloud-front { width: 30%; bottom: -24px; }
+  /* Measured off the real mobile variant at 375px wide: the back cloud is
+     481px — WIDER than the screen, running off both edges — the front cloud
+     216px, and the two sit 412px apart. The clouds being under-sized was
+     what made the cups look dumped on the page instead of riding on one. */
+  .sig-row { flex-direction: column; align-items: center; row-gap: 237px; margin-top: 60px; }
+  /* vw, not %: the item box is inset by the page gutter, so a percentage
+     would size the cloud to 327px instead of the 481px the real site uses.
+     body already hides horizontal overflow, so the spill is safe. */
+  .sig-item { width: 100%; max-width: none; margin: 0; }
+  .sig-item .sig-item-cup { width: 26vw; }
+  .sig-item-cloud { width: 128vw; bottom: -92px; }
+  .sig-item-cloud-front { width: 57.6vw; bottom: -30px; }
+  .sig-item-label { bottom: -14px; }
   /* the real phone variant keeps the middle cup at full size — there it
      only travels, it doesn't shrink */
-  .sig-item-blue { width: 100%; max-width: 420px; order: -1; transform: none; margin: 0; }
-  .sig-item-blue .sig-item-cup { width: 46%; }
+  .sig-item-blue { width: 100%; max-width: none; order: -1; transform: none; margin: 0; }
+  .sig-item-blue .sig-item-cup { width: 32vw; }
   .sig-item-straw { order: 2; }
   .sig-item-choc { order: 1; }
 }
@@ -1584,4 +1612,5 @@ footer{background:none;color:var(--ink);padding:0 60px 40px}
   .spin-badge,
   .sig-item-blue .sig-item-cup { transition-duration: .01ms; }
 }
+
 
