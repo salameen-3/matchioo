@@ -793,14 +793,17 @@ ul {
   .sig-callout-2 .sig-arrow { width: 88px; }
 }
 
+/* phone: the same arrangement as the desktop panel, only pulled in tight
+   around a bigger cup — the notes used to be flung out to the very edges of
+   a 400px-tall box with a small cup rattling around in the middle */
 @media (max-width: 809px) {
-  .sig-usecase { height: 400px; }
-  .sig-callout { font-size: 20px; }
-  .sig-arrow { width: 56px; }
-  .sig-callout-2 .sig-arrow { width: 64px; }
-  .sig-callout-1 { left: 0; top: 2%; }
-  .sig-callout-2 { right: 0; top: 12%; }
-  .sig-more-chip { right: -2%; bottom: 10%; font-size: 18px; }
+  .sig-usecase { height: 330px; }
+  .sig-callout { font-size: 22px; gap: 6px; }
+  .sig-arrow { width: 62px; }
+  .sig-callout-2 .sig-arrow { width: 52px; }
+  .sig-callout-1 { left: 3%; top: 5%; }
+  .sig-callout-2 { right: 3%; top: 25%; }
+  .sig-more-chip { right: 1%; bottom: 13%; font-size: 19px; }
 }
 
 /* generous, deliberate gap between the solo cup and the three-cup row —
@@ -1612,5 +1615,6 @@ footer{background:none;color:var(--ink);padding:0 60px 40px}
   .spin-badge,
   .sig-item-blue .sig-item-cup { transition-duration: .01ms; }
 }
+
 
 
